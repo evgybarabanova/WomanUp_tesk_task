@@ -1,12 +1,14 @@
 import { Routes, Route } from 'react-router-dom';
-import Landing from './page/Landing';
+import Home from './page/Home';
+import Notes from './components/Notes'
 
 function App() {
   return (
 <>
 <Routes>
-  <Route path='/' element={<Landing />}></Route>
+  <Route path='/' element={<Home />}></Route>
 </Routes>
+<Notes/>
 </>
   )
 }
