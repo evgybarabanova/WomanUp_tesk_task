@@ -1,7 +1,18 @@
 const router = require('express').Router()
 const {
-  createNotes, deleteNotes, updateNotes
+  createNotes, deleteNotes, updateNotes, retrieveNotes
 } = require('../logic')
+
+router.get('/', async (req, res) => {
+  try {
+    const notes = await retrieveNotes()
+
+    res.status(200).json(notes)
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+})
+
 
 router.post('/', async (req, res) => {
   try {

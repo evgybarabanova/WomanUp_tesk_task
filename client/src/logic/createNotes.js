@@ -1,10 +1,15 @@
+import axios from 'axios'
 
+export default function createNotes(description) {
 
-export default function createNotes(text) {
+  return axios
+    .post(`${process.env.REACT_APP_API_URL}/notes`, {
+      description
+    })
+    .then(() => { })
+    .catch(error => {
+      const message = error.response.data.error
 
-  return 
-  
-    //`${process.env.REACT_APP_API_URL}/notes`
-
-   
+      throw new Error(message)
+    })
 }

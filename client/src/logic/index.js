@@ -1,12 +1,11 @@
-import completeNotes from './completeNotes'
+import retrieveNotes from './retrieveNotes'
 import createNotes from './createNotes'
 import deleteNotes from './deleteNotes'
 import updateNotes from './updateNotes'
 
-
-export{
-completeNotes,
-createNotes,
-deleteNotes,
-updateNotes
+export {
+  retrieveNotes,
+  createNotes,
+  deleteNotes,
+  updateNotes
 }
