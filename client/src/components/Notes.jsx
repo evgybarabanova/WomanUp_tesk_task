@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { updateNotes, deleteNotes, retrieveNotes } from "../logic";
+import { updateNameNotes, updateDescriptionNotes, updateDateNotes, deleteNotes, retrieveNotes } from "../logic";
 import "./Note.css";
 
 export default function Notes() {
@@ -28,9 +28,29 @@ export default function Notes() {
     }
   };
 
-  const handleUpdateNote = (noteId, name, description, date) => {
+  const handleUpdateNameNote = (noteId, name) => {
     try {
-      updateNotes(noteId, name, description, date).catch((error) =>
+      updateNameNotes(noteId, name).catch((error) =>
+        alert(error.message)
+      );
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const handleUpdateDescriptionNote = (noteId, description) => {
+    try {
+      updateDescriptionNotes(noteId, description).catch((error) =>
+        alert(error.message)
+      );
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const handleUpdateDateNote = (noteId, date) => {
+    try {
+      updateDateNotes(noteId, date).catch((error) =>
         alert(error.message)
       );
     } catch (error) {
@@ -50,11 +70,12 @@ export default function Notes() {
               onKeyUp={(event) => {
                 const name = event.target.innerText;
                 
-                handleUpdateNote(note.id, name);
+                handleUpdateNameNote(note.id, name);
               }}
             >
               {note.name}
             </p>
+
             <p className="add">enter your description</p>
             <p
               className="note__description"
@@ -62,23 +83,25 @@ export default function Notes() {
               onKeyUp={(event) => {
                 const description = event.target.innerText;
 
-                handleUpdateNote(note.id, description);
+                handleUpdateDescriptionNote(note.id, description);
               }}
             >
               {note.description}
             </p>
+
             <p className="add">enter your date</p>
             <p
               className="note__date"
               contentEditable="true"
               onKeyUp={(event) => {
-                const date = event.target.date;
+                const date = event.target.innerText;
 
-                handleUpdateNote(note.id, date);
+                handleUpdateDateNote(note.id, date);
               }}
             >
               {note.date}
             </p>
+
             <p>File of note</p>
             <button className="note__add-button">add files</button>
             <button

@@ -1,12 +1,10 @@
 import axios from 'axios'
 
-export default function updateNotes(noteId, name, description, date) {
+export default function updateDescriptionNotes(noteId, description) {
 
   return axios
     .patch(`${process.env.REACT_APP_API_URL}/notes/${noteId}`, {
-      name,
-      description,
-      date
+      description
     })
     .then(() => { })
     .catch(error => {
