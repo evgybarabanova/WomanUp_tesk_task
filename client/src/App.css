@@ -1,0 +1,15 @@
+*{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial;
+  font-size: medium;
+}
+
+button{
+  border: none;
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  
+}
+
+li{
+  list-style: none;
+}

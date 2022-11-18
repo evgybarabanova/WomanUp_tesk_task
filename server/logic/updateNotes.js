@@ -1,10 +1,11 @@
 const { Note } = require('../db/models');
 
-function updateNotes(noteId, description) {
+function updateNotes(noteId, name, description, date) {
   return (async () => {
-    const note = await Note.update({ description }, { where: { id: noteId }, raw: true })
+    const note = await Note.update({ name, description, date }, { where: { id: noteId }, raw: true })
     if (!note) throw new Error(`note with id ${noteId} not found`)
   })();
+  
 }
 
 module.exports = updateNotes;

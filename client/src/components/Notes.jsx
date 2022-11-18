@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { updateNotes, deleteNotes, retrieveNotes } from "../logic";
+import "./Note.css";
 
 export default function Notes() {
   const [notes, setNotes] = useState([]);
@@ -27,9 +28,11 @@ export default function Notes() {
     }
   };
 
-  const handleUpdateNote = (noteId, description) => {
+  const handleUpdateNote = (noteId, name, description, date) => {
     try {
-      updateNotes(noteId, description).catch((error) => alert(error.message));
+      updateNotes(noteId, name, description, date).catch((error) =>
+        alert(error.message)
+      );
     } catch (error) {
       alert(error.message);
     }
@@ -40,25 +43,19 @@ export default function Notes() {
       <li className="list_item">
         {notes.map((note) => (
           <div className="note">
-            <button
-              className="note__delete-button"
-              onClick={() => handleDeleteNote(note.id).reverse()}
-            >
-              x
-            </button>
-            <p>add name</p>
+            <p className="add">enter your name</p>
             <p
               className="note__name"
               contentEditable="true"
               onKeyUp={(event) => {
-                const name = event.target.name;
-
+                const name = event.target.innerText;
+                
                 handleUpdateNote(note.id, name);
               }}
             >
               {note.name}
             </p>
-            <p>add description</p>
+            <p className="add">enter your description</p>
             <p
               className="note__description"
               contentEditable="true"
@@ -70,9 +67,9 @@ export default function Notes() {
             >
               {note.description}
             </p>
-            <p>add date</p>
+            <p className="add">enter your date</p>
             <p
-              className="sticker__date"
+              className="note__date"
               contentEditable="true"
               onKeyUp={(event) => {
                 const date = event.target.date;
@@ -84,6 +81,12 @@ export default function Notes() {
             </p>
             <p>File of note</p>
             <button className="note__add-button">add files</button>
+            <button
+              className="note__delete-button"
+              onClick={() => handleDeleteNote(note.id).reverse()}
+            >
+              delete note
+            </button>
           </div>
         ))}
       </li>

@@ -39,9 +39,9 @@ router.delete('/:noteId', async (req, res) => {
 
  router.patch('/:noteId', async (req, res) => {
    try {
-     const { params: { noteId }, body: { description } } = req
+     const { params: { noteId }, body: { name, description, date } } = req
 
-     await updateNotes(noteId, description)
+     await updateNotes(noteId, name, description, date)
      res.status(201).send()
    } catch (error) {
      res.status(500).json({ error: error.message })

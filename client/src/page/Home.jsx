@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { retrieveNotes, createNotes } from "../logic";
+import './Home.css'
 
 export default function Home() {
   const [notes, setNotes] = useState([]);
@@ -16,9 +17,9 @@ export default function Home() {
   };
 
   return (
-    <>
-      <div>to do list</div>
-      <button className="note__create-button" onClick={() => handleCreateNote()}>create notes</button>
-    </>
+    <header>
+      <h1><b>to do list</b></h1>
+      <button className="note__create-button" onClick={() => handleCreateNote()}>create note</button>
+    </header>
   );
 }
