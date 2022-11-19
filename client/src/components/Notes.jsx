@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { updateNameNotes, updateDescriptionNotes, updateDateNotes, deleteNotes, retrieveNotes } from "../logic";
+import {
+  updateNameNotes,
+  updateDescriptionNotes,
+  updateDateNotes,
+  deleteNotes,
+  retrieveNotes,
+} from "../logic";
 import "./Note.css";
 
 export default function Notes() {
   const [notes, setNotes] = useState([]);
+  const [checkStatus, setCheckStatus] = useState([]);
 
   useEffect(() => {
     try {
@@ -30,9 +37,7 @@ export default function Notes() {
 
   const handleUpdateNameNote = (noteId, name) => {
     try {
-      updateNameNotes(noteId, name).catch((error) =>
-        alert(error.message)
-      );
+      updateNameNotes(noteId, name).catch((error) => alert(error.message));
     } catch (error) {
       alert(error.message);
     }
@@ -50,33 +55,36 @@ export default function Notes() {
 
   const handleUpdateDateNote = (noteId, date) => {
     try {
-      updateDateNotes(noteId, date).catch((error) =>
-        alert(error.message)
-      );
+      updateDateNotes(noteId, date).catch((error) => alert(error.message));
     } catch (error) {
       alert(error.message);
     }
   };
 
+  const handleCheckStatus = () => {
+
+  };
+
   return (
     <ul className="list">
       <li className="list_item">
-        {notes.map((note) => (
-          <div className="note">
-            <p className="add">enter your name</p>
+        {notes.map((note, index) => (
+          <div className="note"  key={index}>
+            <input value={note} type="checkbox" />
+            <p className="add">title of task</p>
             <p
               className="note__name"
               contentEditable="true"
               onKeyUp={(event) => {
                 const name = event.target.innerText;
-                
+
                 handleUpdateNameNote(note.id, name);
               }}
             >
               {note.name}
             </p>
 
-            <p className="add">enter your description</p>
+            <p className="add">description of task</p>
             <p
               className="note__description"
               contentEditable="true"
@@ -89,7 +97,7 @@ export default function Notes() {
               {note.description}
             </p>
 
-            <p className="add">enter your date</p>
+            <p className="add">the time of the task</p>
             <p
               className="note__date"
               contentEditable="true"

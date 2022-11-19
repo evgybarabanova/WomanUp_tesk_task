@@ -10,7 +10,8 @@ function retrieveNotes() {
       id: note.id.toString(),
       name: note.name,
       description: note.description,
-      date: note.date
+      date: note.date, 
+      status: note.status,
     }))
 
     return notes

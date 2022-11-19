@@ -3,6 +3,7 @@ require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const morgan = require('morgan')
+const fileUpload = require('express-fileupload')
 
 const { PORT } = process.env
 const dbcheck = require('./db/dbConnection')
@@ -16,6 +17,8 @@ api.use(cors())
 api.use(express.json())
 
 api.use(morgan('dev'))
+
+api.use(fileUpload({createParentPath: true,}))
 
 // requiring routes files
 const noteRoutes = require('./routes/noteRoutes')

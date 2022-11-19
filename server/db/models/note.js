@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
   Note.init({
     name: DataTypes.STRING,
     description: DataTypes.STRING,
-    date: DataTypes.STRING
+    date: DataTypes.STRING,
+    status: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'Note',

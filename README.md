@@ -1,7 +1,5 @@
 # WomanUp_tesk_task
 
-# name of task
-# description
-# date of ending
-# file
+# Изменение полей заметки сохраняет без кнопок на onChange
+
 
