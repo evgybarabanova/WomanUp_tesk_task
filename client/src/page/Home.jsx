@@ -5,7 +5,7 @@ import './Home.css'
 export default function Home() {
   const [notes, setNotes] = useState([]);
 
-  const handleCreateNote = (name, description) => {
+  const handleCreateNote = () => {
     try {
       createNotes("")
         .then(() => retrieveNotes())

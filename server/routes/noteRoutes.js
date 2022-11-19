@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const {
-  createNotes, deleteNotes, updateNotes, retrieveNotes
+  createNotes, deleteNotes, updateNotes, retrieveNotes, retrieveNote,
 } = require('../logic')
 
 router.get('/', async (req, res) => {
@@ -13,6 +13,17 @@ router.get('/', async (req, res) => {
   }
 })
 
+
+router.get('/:noteId', async (req, res) => {
+  try {
+    const { params: { noteId } } = req
+    const note = await retrieveNote(noteId)
+
+    res.status(200).json(note)
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+})
 
 router.post('/', async (req, res) => {
   try {
@@ -37,16 +48,16 @@ router.delete('/:noteId', async (req, res) => {
   }
 })
 
- router.patch('/:noteId', async (req, res) => {
-   try {
-     const { params: { noteId }, body: { name, description, date } } = req
+router.patch('/:noteId', async (req, res) => {
+  try {
+    const { params: { noteId }, body: { name, description, date, status } } = req
 
-     await updateNotes(noteId, name, description, date)
-     res.status(201).send()
-   } catch (error) {
-     res.status(500).json({ error: error.message })
-   }
- })
+    await updateNotes(noteId, name, description, date, status)
+    res.status(201).send()
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+})
 
 
 module.exports = router
