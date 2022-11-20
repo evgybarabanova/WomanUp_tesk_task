@@ -32,11 +32,13 @@ export default function UpdateNote({ noteId, onUpdated }) {
     }
 
     return <form onSubmit={handleUpdateNote}>
-        
-        <input type="text" name="name" defaultValue={note?.name} />
-        <input type="text" name="description" defaultValue={note?.description} />
-        <input type="date" name="date" defaultValue={note?.date} />
         <input type="checkbox" name="status" defaultValue={note?.status} />
+        <p className="add">title of task</p>
+        <input type="text" name="name" defaultValue={note?.name} />
+        <p className="add">description of task</p>
+        <input type="text" name="description" defaultValue={note?.description} />
+        <p className="add">the time of the task</p>
+        <input type="date" name="date" defaultValue={note?.date} />
         <button>Update</button>
     </form>
 }

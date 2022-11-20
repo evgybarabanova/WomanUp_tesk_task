@@ -16,6 +16,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:noteId', async (req, res) => {
   try {
+    debugger
     const { params: { noteId } } = req
     const note = await retrieveNote(noteId)
 

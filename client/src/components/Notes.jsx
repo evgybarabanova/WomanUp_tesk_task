@@ -3,7 +3,6 @@ import UpdateNote from "./UpdateNote";
 import {
   deleteNotes,
   retrieveNotes,
-  updateNote
 } from "../logic";
 import "./Note.css";
 
@@ -34,14 +33,14 @@ export default function Notes() {
     }
   };
 
-  const handleUpdateNote = (noteId, name, description, date, status) => {
-    try {
-      updateNote(noteId, name, description, date, status)
-        .catch((error) => alert(error.message));
-    } catch (error) {
-      alert(error.message);
-    }
-  };
+  // const handleUpdateNote = (noteId, name, description, date, status) => {
+  //   try {
+  //     updateNote(noteId, name, description, date, status)
+  //       .catch((error) => alert(error.message));
+  //   } catch (error) {
+  //     alert(error.message);
+  //   }
+  // };
 
   const handleOpenUpdateNote = (noteId) => {
     setNoteIdToUpdate(noteId)
@@ -61,11 +60,12 @@ export default function Notes() {
   }
 
   return (<>
-   {noteIdToUpdate && <UpdateNote nodeId={noteIdToUpdate} onUpdated={handleNoteUpdated}/>}
+   {noteIdToUpdate && <UpdateNote noteId={noteIdToUpdate} onUpdated={handleNoteUpdated}/> }
+   
     <ul className="list">
       <li className="list_item">
-        {notes.map((note, index) => (
-          <div className="note" key={index}>
+        {notes.map((note) => (
+          <div className="note">
             <input defaultValue={note.status} type="checkbox" disabled />
             <p className="add">title of task</p>
             <p className="note__name">{note.name}</p>
