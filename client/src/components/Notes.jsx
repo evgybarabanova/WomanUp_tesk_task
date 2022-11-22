@@ -3,12 +3,14 @@ import UpdateNote from "./UpdateNote";
 import {
   deleteNotes,
   retrieveNotes,
+  uploadFileNotes
 } from "../logic";
 import "./Note.css";
 
 export default function Notes() {
   const [notes, setNotes] = useState([]);
   const [noteIdToUpdate, setNoteIdToUpdate] = useState()
+  const [file, setFile] = useState()
 
   useEffect(() => {
     try {
@@ -33,18 +35,17 @@ export default function Notes() {
     }
   };
 
-  // const handleUpdateNote = (noteId, name, description, date, status) => {
-  //   try {
-  //     updateNote(noteId, name, description, date, status)
-  //       .catch((error) => alert(error.message));
-  //   } catch (error) {
-  //     alert(error.message);
-  //   }
-  // };
-
   const handleOpenUpdateNote = (noteId) => {
     setNoteIdToUpdate(noteId)
   }
+
+  // const onSubmitHandler = (e)=>{
+  //   e.preventDefault()
+  // }
+
+  //   const fileChangeHandler = (e) =>{
+  //     setFileData(e.target.files[0])
+  //   }
 
   const handleNoteUpdated = () => {
     try {
@@ -59,9 +60,19 @@ export default function Notes() {
     }
   }
 
+  const handleUploadFileNotes = (noteId, file) => {
+    try {
+      uploadFileNotes(noteId, file)
+        .then((file) => setFile(file))
+        .catch((error) => alert(error.message));
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
   return (<>
-   {noteIdToUpdate && <UpdateNote noteId={noteIdToUpdate} onUpdated={handleNoteUpdated}/> }
-   
+    {noteIdToUpdate && <UpdateNote noteId={noteIdToUpdate} onUpdated={handleNoteUpdated} />}
+
     <ul className="list">
       <li className="list_item">
         {notes.map((note) => (
@@ -73,9 +84,20 @@ export default function Notes() {
             <p className="note__description">{note.description}</p>
             <p className="add">the time of the task</p>
             <p className="note__date">{note.date}</p>
-
-            <p>File of note</p>
-            <button className="note__add-button">add files</button>
+            {/* <form>
+              <p>File of note</p>
+              <button className="note__add-button">choose file</button>
+              <input type="file" name="file" />
+              <button className="btn btn-primary" type="submit">Upload</button>
+            </form> */}
+            <form >
+                        <div className="form-group">
+                            <input type="file"  />
+                        </div>
+                        <div className="form-group">
+                            <button className="btn btn-primary" type="submit">Upload</button>
+                        </div>
+                    </form>
             <button
               className="note__update-button"
               onClick={() => handleOpenUpdateNote(note.id)}

@@ -1,6 +1,7 @@
 const router = require('express').Router()
+const upload = require('../controllers/multerController')
 const {
-  createNotes, deleteNotes, updateNotes, retrieveNotes, retrieveNote,
+  createNotes, deleteNotes, updateNotes, retrieveNotes, retrieveNote, uploadFileNotes
 } = require('../logic')
 
 router.get('/', async (req, res) => {
@@ -13,10 +14,8 @@ router.get('/', async (req, res) => {
   }
 })
 
-
 router.get('/:noteId', async (req, res) => {
   try {
-    debugger
     const { params: { noteId } } = req
     const note = await retrieveNote(noteId)
 
@@ -37,6 +36,17 @@ router.post('/', async (req, res) => {
     res.status(500).json({ error: error.message })
   }
 })
+
+ router.post('/:noteId/upload', upload.single('image'), async (req, res) => {
+   try {
+    const { params: { noteId }, file } = req
+    
+    await uploadFileNotes(noteId, file)
+     res.status(200).send('Single file upload success')
+   } catch (error) {
+     res.status(500).json({ error: error.message })
+   }
+ })
 
 router.delete('/:noteId', async (req, res) => {
   try {
@@ -59,6 +69,5 @@ router.patch('/:noteId', async (req, res) => {
     res.status(500).json({ error: error.message })
   }
 })
-
 
 module.exports = router
