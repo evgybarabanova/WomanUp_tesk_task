@@ -37,7 +37,7 @@ router.post('/', async (req, res) => {
   }
 })
 
- router.post('/:noteId/upload', upload.single('image'), async (req, res) => {
+ router.post('/:noteId/upload', upload.single('file'), async (req, res) => {
    try {
     const { params: { noteId }, file } = req
     

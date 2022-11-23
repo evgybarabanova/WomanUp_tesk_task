@@ -1,11 +1,12 @@
 import axios from 'axios'
 
-export default function uploadFileNotes(noteId, file) {
+export default function uploadFileNotes(noteId, formData) {
   
-  return (`${process.env.REACT_APP_API_URL}/notes/${noteId}/upload`, {
-    file,
+  return axios(`${process.env.REACT_APP_API_URL}/notes/${noteId}/upload`, {
+    method: 'POST',
+    body: formData,
   })
-    .then((result) => console.log('File Send Success'))
+  .then(() => {})
     .catch(error => {
       const message = error.response.data.error
 
