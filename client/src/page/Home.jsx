@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <header>
       <h1><b>to do list</b></h1>
-      <button className="note__create-button" onClick={() => handleCreateNote()}>create note</button>
+      <button className="note__create-button" onClick={() => handleCreateNote()}>create task</button>
     </header>
   );
 }

@@ -1,14 +1,12 @@
-*{
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial;
+ *{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
 
 button{
   background-color: rgb(255, 255, 255);
   cursor: pointer;
-  font-size: medium;
-  
 }
 
 li{
   list-style: none;
-}
+} 

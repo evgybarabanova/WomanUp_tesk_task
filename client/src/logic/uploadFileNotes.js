@@ -1,12 +1,13 @@
 import axios from 'axios'
 
-export default function uploadFileNotes(noteId, formData) {
-  
-  return axios(`${process.env.REACT_APP_API_URL}/notes/${noteId}/upload`, {
-    method: 'POST',
-    body: formData,
+export default function uploadFileNotes(noteId) {
+
+  return axios.post(`${process.env.REACT_APP_API_URL}/notes/${noteId}/upload`, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
   })
-  .then(() => {})
+    .then(() => { })
     .catch(error => {
       const message = error.response.data.error
 

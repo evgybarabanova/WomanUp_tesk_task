@@ -1,0 +1,24 @@
+.list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color:rgb(245, 236, 241);
+}
+
+.add{
+  font-size:large;
+}
+
+.note__update-button, .note__delete-button{
+  display: flex;
+  margin-top: 1rem;
+}
+.note{
+  margin-top: 1rem;
+  background-position: center;
+  background-size: cover;
+  padding: 0.5rem 9rem;
+}
+
+
+
